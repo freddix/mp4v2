@@ -1,7 +1,7 @@
 Summary:	MP4v2 library provides API for creation and modification of MP4 files
 Name:		mp4v2
 Version:	2.0.0
-Release:	1
+Release:	2
 License:	MPL v1.1
 Group:		Applications/Multimedia
 Source0:	http://mp4v2.googlecode.com/files/%{name}-%{version}.tar.bz2
@@ -31,6 +31,7 @@ files using the mp4 container format.
 Summary:	Header files for MP4v2
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 Header files for MP4v2.
@@ -48,6 +49,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -80,6 +83,5 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmp4v2.so
-%{_libdir}/libmp4v2.la
 %{_includedir}/mp4v2
 
